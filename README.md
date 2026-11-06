@@ -23,14 +23,14 @@ Nếu bạn sử dụng ứng dụng **Downloader** trên Android TV, hãy nhậ
 *Phát triển bởi daivietpda.*
 
 
-## Phiên bản 1.2.0 - chạy làm launcher mặc định và gọi TV Guard dậy
-- Thêm khai báo launcher (`HOME` + `DEFAULT`) để đặt làm màn hình chính của TV.
-- Mỗi lần màn hình này hiện ra (bật TV, thức dậy từ chế độ chờ, về Home), nó mở mục khởi động trong suốt của TV Guard
-  (`com.tvguard.app/.BootTrigger`, cần TV Guard từ bản 1.21 trở lên) tối đa 1 lần mỗi 2 phút. Không có TV Guard thì bỏ qua.
-- Bấm Back không thoát nữa (màn hình chính).
-- Không hiện chính nó trong lưới ứng dụng.
-- Bản build debug có tên gói `org.lineageos.appdrawer`; bản release thêm hậu tố `.AppDrawer`.
+## Phiên bản 2.0.0 - giao diện mới, tên gói quang.drawer
+- Giao diện mới: nền gradient tối, đồng hồ + ngày ở đầu trang, lưới thẻ 16:9 bo góc (có banner thì hiện banner, không thì icon + tên),
+  ô đang chọn có viền trắng và phóng to nhẹ. Lưới tự cập nhật khi cài / gỡ ứng dụng.
+- Tên gói đổi thành `quang.drawer` (cả debug và release, không còn hậu tố `.AppDrawer`).
+- Giữ nguyên: là launcher mặc định (HOME), Back không thoát, không hiện chính nó, mỗi lần hiện ra gọi TV Guard
+  (`com.tvguard.app/.BootTrigger`) tối đa 1 lần / 2 phút.
+- Mới: cùng lượt đó gọi thêm `tb.voice.mstore` và `tungbui.mitv.cstore` (cách nhau 1 giây, sau TV Guard).
+  Danh sách nằm ở `EXTRA_WAKE` trong `AppDrawerActivity.java`; muốn chỉ định rõ màn hình khởi động thì điền cột thứ 2 dạng `ten.goi/.TenLop`.
 
 Đặt làm launcher mặc định (sau khi cài):
-`adb shell cmd package set-home-activity org.lineageos.appdrawer/org.lineageos.appdrawer.AppDrawerActivity`
-(bản release: `org.lineageos.appdrawer.AppDrawer/org.lineageos.appdrawer.AppDrawerActivity`).
+`adb shell cmd package set-home-activity quang.drawer/.AppDrawerActivity`
